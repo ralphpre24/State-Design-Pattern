@@ -1,19 +1,13 @@
 public class StateDesignPattern {
     public static void main(String[] args) {
-        VendingMachine vendingMachine = new VendingMachine(10);
+        VendingMachine vendingMachine = new VendingMachine();
 
-        vendingMachine.selectItem("Soda");
-        vendingMachine.insertCoin(2.00);
-        vendingMachine.dispenseItem();
+        vendingMachine.selectItem("Soda"); // Select item
+        vendingMachine.insertCoin(1);     // Insert coin
+        vendingMachine.insertCoin(1);     // Insert another coin
+        vendingMachine.dispenseItem();    // Dispense item
 
-        vendingMachine.setOutOfOrder(true);
-        vendingMachine.selectItem("Chips");
-        vendingMachine.insertCoin(1.00);
-        vendingMachine.dispenseItem();
-
-        vendingMachine.setOutOfOrder(false);
-        vendingMachine.selectItem("Juice");
-        vendingMachine.insertCoin(1.50);
-        vendingMachine.dispenseItem();
+        vendingMachine.setOutOfOrder();   // Set out of order
+        vendingMachine.selectItem("Chips"); // Try to select item (should fail)
     }
 }
