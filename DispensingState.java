@@ -1,26 +1,25 @@
-public class DispensingState implements VendingMachineState {
+class DispensingState implements VendingMachineState {
     @Override
     public void selectItem(VendingMachine vendingMachine, String item) {
-        System.out.println("Cannot select item while dispensing.");
+        System.out.println("Currently dispensing an item. Please wait.");
     }
 
     @Override
-    public void insertCoin(VendingMachine vendingMachine, double amount) {
-        System.out.println("Cannot insert coin while dispensing.");
+    public void insertCoin(VendingMachine vendingMachine, int amount) {
+        System.out.println("Currently dispensing an item. Please wait.");
     }
 
     @Override
     public void dispenseItem(VendingMachine vendingMachine) {
-        System.out.println("Dispensing item...");
-        // Simulate item dispensing and reset to Idle
-        vendingMachine.setCurrentState(new IdleState());
+        System.out.println("Dispensing item: " + vendingMachine.getSelectedItem());
+        vendingMachine.setBalance(vendingMachine.getBalance() - vendingMachine.getItemPrice(vendingMachine.getSelectedItem()));
+        vendingMachine.setSelectedItem(null);
+        vendingMachine.setState(new IdleState());
     }
 
     @Override
-    public void setOutOfOrder(VendingMachine vendingMachine, boolean outOfOrder) {
-        if (outOfOrder) {
-            vendingMachine.setCurrentState(new OutOfOrderState());
-        }
+    public void setOutOfOrder(VendingMachine vendingMachine) {
+        System.out.println("Vending machine is now out of order.");
+        vendingMachine.setState(new OutOfOrderState());
     }
 }
-
