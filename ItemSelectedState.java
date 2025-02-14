@@ -1,32 +1,26 @@
-public class ItemSelectedState implements VendingMachineState {
+class ItemSelectedState implements VendingMachineState {
     @Override
     public void selectItem(VendingMachine vendingMachine, String item) {
-        System.out.println("Item already selected. Please insert coin.");
+        System.out.println("Item already selected. Please insert coins.");
     }
 
     @Override
-    public void insertCoin(VendingMachine vendingMachine, double amount) {
+    public void insertCoin(VendingMachine vendingMachine, int amount) {
         System.out.println("Coin inserted: " + amount);
-        // Assuming the item price is 1.50 for simplicity
-        double price = 1.50;
-        if (amount >= price) {
-            vendingMachine.setBalance(amount);
-            vendingMachine.setCurrentState(new DispensingState());
-        } else {
-            System.out.println("Insufficient amount. Please insert more coins.");
+        vendingMachine.setBalance(vendingMachine.getBalance() + amount);
+        if (vendingMachine.getBalance() >= vendingMachine.getItemPrice(vendingMachine.getSelectedItem())) {
+            vendingMachine.setState(new DispensingState());
         }
     }
 
     @Override
     public void dispenseItem(VendingMachine vendingMachine) {
-        System.out.println("Please insert coin first.");
+        System.out.println("Please insert sufficient coins.");
     }
 
     @Override
-    public void setOutOfOrder(VendingMachine vendingMachine, boolean outOfOrder) {
-        if (outOfOrder) {
-            vendingMachine.setCurrentState(new OutOfOrderState());
-        }
+    public void setOutOfOrder(VendingMachine vendingMachine) {
+        System.out.println("Vending machine is now out of order.");
+        vendingMachine.setState(new OutOfOrderState());
     }
 }
-
