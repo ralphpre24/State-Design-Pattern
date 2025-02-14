@@ -1,3 +1,5 @@
+import java.util.*;
+
 class VendingMachine {
     private VendingMachineState currentState;
     private String selectedItem;
