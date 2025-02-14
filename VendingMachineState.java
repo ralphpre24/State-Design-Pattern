@@ -1,6 +1,6 @@
-public interface VendingMachineState {
+interface VendingMachineState {
     void selectItem(VendingMachine vendingMachine, String item);
-    void insertCoin(VendingMachine vendingMachine, double amount);
+    void insertCoin(VendingMachine vendingMachine, int amount);
     void dispenseItem(VendingMachine vendingMachine);
-    void setOutOfOrder(VendingMachine vendingMachine, boolean outOfOrder);
+    void setOutOfOrder(VendingMachine vendingMachine);
 }
