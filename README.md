@@ -29,5 +29,6 @@ Introduce a reference to the current VendingMachineState object.
 Delegate actions like selectItem, insertCoin, dispenseItem, and setOutOfOrder to the current state object through its corresponding methods.
 
 UML class Diagram:
+
 ![image](https://github.com/user-attachments/assets/e916a570-035b-4690-8de6-dfe6f39ed91c)
 
